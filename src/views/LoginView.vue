@@ -1,0 +1,3 @@
+<template>
+    <MyLogin></MyLogin>
+</template>
