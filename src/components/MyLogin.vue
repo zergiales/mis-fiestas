@@ -1,87 +1,146 @@
 <template>
-  <input type="text" :value="name" @input="setName">
+  <v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
+    <v-text-field
+      v-model="name"
+      :counter="10"
+      :rules="nameRules"
+      label="Name"
+      required
+    ></v-text-field>
+
+    <v-text-field
+      v-model="email"
+      :rules="emailRules"
+      label="E-mail"
+      required
+    ></v-text-field>
+
+    <v-select
+      v-model="select"
+      :items="items"
+      :rules="[v => !!v || 'Item is required']"
+      label="Item"
+      required
+    ></v-select>
+
+    <v-checkbox
+      v-model="checkbox"
+      :rules="[v => !!v || 'You must agree to continue!']"
+      label="Do you agree?"
+      required
+    ></v-checkbox>
+
+    <v-btn
+      :disabled="!valid"
+      color="success"
+      class="mr-4"
+      @click="validate"
+    >
+      Validate
+    </v-btn>
+
+    <v-btn
+      color="error"
+      class="mr-4"
+      @click="reset"
+    >
+      Reset Form
+    </v-btn>
+
+    <v-btn
+      color="warning"
+      @click="resetValidation"
+    >
+      Reset Validation
+    </v-btn>
+  </v-form>
 </template>
 <script>
-import axios from 'axios';
-import { validationMixins } from 'vuelidate';
-import {
-  required, maxlenght, minLength, email,
-} from 'vuelidate/lib/validators';
-import {mapActions } from 'vuex';
-export default {
-  name: 'App',
-  mixins: [validationMixin],
-  validations: {
-    email: {
-      required, email, maxLength: maxLength(20),
-    },
-    password: { required, minLength: minLength(8) },
-  },
-  data: () => ({
-    dialog: false,
-    loading: false,
-    snackbarLogin: false,
-    passwordShow: false,
-    email: '',
-    password: '',
-  }),
-  methods: {
+// import axios from 'axios';
+// import { useValidate } from '@vuelidate/core';
+// import { validationMixins } from 'vuelidate';
+// import {
+//   required, maxlenght, minLength, email,
+// } from '@vuelidate/validators';
+// import {mapActions } from 'vuex';
+// export default {
+//   name: 'App',
+//   mixins: [validationMixin],
+//   validations: {
+//     email: {
+//       required, email, maxLength: maxLength(20),
+//     },
+//     password: { required, minLength: minLength(8) },
+//   },
+//   data: () => ({
+//     dialog: false,
+//     loading: false,
+//     snackbarLogin: false,
+//     passwordShow: false,
+//     email: '',
+//     password: '',
+//   }),
+//   methods: {
 
-    ...mapActions([
-      'actualizarIdAction',
-      'actualizarNombreAction',
-      'actualizarTipoAction',
-    ]),
+//     ...mapActions([
+//       'actualizarIdAction',
+//       'actualizarNombreAction',
+//       'actualizarTipoAction',
+//     ]),
 
-    async getUser() {
-      const response = await axios.post(
-        `${process.env.VUE_APP_SERVER_TOTAL_PATH}/login`,
-        {
-          email: this.email,
-          contraseña: this.password,
-        },
-      );
-      console.log(response.data.email);
-      console.log(response.data.nombre);
-      console.log(response.data.id);
-      console.log(response.data.tipo);
-      console.log(`${process.env.VUE_APP_SERVER_TOTAL_PATH}/login`);
-      if (response.data.nombre) {
-        setTimeout(() => {
-          this.snackbarLogin = true;
-          this.loading = true;
-          /* datos del usuario que recogemos */
-          this.actualizarIdAction(response.data.id);
-          this.actualizarNombreAction(response.data.nombre);
-          this.actualizarTipoAction(response.data.tipo);
-        }, 1000);
-        setTimeout(() => {
-          this.$router.push('/home');
-        }, 2000);
-      } else {
-        this.dialog = true;
-        this.email = '';
-        this.password = '';
-      }
-    },
-    mensajeEmail() {
-      const mensaje = [];
-      if (!this.$v.email.email) {
-        mensaje.push('el campo solo admite caracteres alfabeticos');
-      } else if (!this.$v.email.required && this.$v.email.$dirty) {
-        mensaje.push('rellena el campo');
-      }
-      return mensaje;
-    },
-    mensajeContraseña() {
-      const mensaje = [];
-      if (!this.$v.password.minLength) {
-        mensaje.push('Se necesita minimo 8 caracteres');
-      } else if (!this.$v.email.required && this.$v.email.$dirty) {
-        mensaje.push('Rellena el campo');
-      }
-      return mensaje;
-    },
-  },
-};
+//     async getUser() {
+//       const response = await axios.post(
+//         `${process.env.VUE_APP_SERVER_TOTAL_PATH}/login`,
+//         {
+//           email: this.email,
+//           contraseña: this.password,
+//         },
+//       );
+//       console.log(response.data.email);
+//       console.log(response.data.nombre);
+//       console.log(response.data.id);
+//       console.log(response.data.tipo);
+//       console.log(`${process.env.VUE_APP_SERVER_TOTAL_PATH}/login`);
+//       if (response.data.nombre) {
+//         setTimeout(() => {
+//           this.snackbarLogin = true;
+//           this.loading = true;
+//           /* datos del usuario que recogemos */
+//           this.actualizarIdAction(response.data.id);
+//           this.actualizarNombreAction(response.data.nombre);
+//           this.actualizarTipoAction(response.data.tipo);
+//         }, 1000);
+//         setTimeout(() => {
+//           this.$router.push('/home');
+//         }, 2000);
+//       } else {
+//         this.dialog = true;
+//         this.email = '';
+//         this.password = '';
+//       }
+//     },
+//     mensajeEmail() {
+//       const mensaje = [];
+//       if (!this.$v.email.email) {
+//         mensaje.push('el campo solo admite caracteres alfabeticos');
+//       } else if (!this.$v.email.required && this.$v.email.$dirty) {
+//         mensaje.push('rellena el campo');
+//       }
+//       return mensaje;
+//     },
+//     mensajeContraseña() {
+//       const mensaje = [];
+//       if (!this.$v.password.minLength) {
+//         mensaje.push('Se necesita minimo 8 caracteres');
+//       } else if (!this.$v.email.required && this.$v.email.$dirty) {
+//         mensaje.push('Rellena el campo');
+//       }
+//       return mensaje;
+//     },
+//   },
+// };
 </script>

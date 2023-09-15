@@ -1,13 +1,5 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="red"
-      dark
-    >
-
-    </v-app-bar>
-
     <v-main>
       <router-view/>
     </v-main>
@@ -18,9 +10,11 @@
 
 export default {
   name: 'App',
-
-  data: () => ({
-    //
-  }),
+  methods: {
+    scroll(refName) {
+      const element = document.getElementById(refName);
+      element.scrollIntoView({ behavior: 'smooth' });
+    },
+  },
 };
 </script>

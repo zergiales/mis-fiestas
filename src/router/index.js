@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import Login from '../views/LoginView.vue';
 import Registro from '../views/RegisterView.vue';
 import Home from '../views/HomeView.vue';
+import Events from '../views/EventsView.vue';
 import Error from '../views/ErrorView.vue';
 
 Vue.use(VueRouter);
@@ -24,6 +25,11 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
+  },
+    {
+    path: '/events',
+    name: 'Events',
+    component: Events,
   },
 
   /* vista error 404 not found */
