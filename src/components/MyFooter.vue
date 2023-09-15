@@ -1,6 +1,6 @@
 <template>
   <v-footer padless >
-    <v-card color="secondaryMedium" class="flex" flat tile>
+    <v-card color="green" class="flex" flat tile>
       <v-card-text class="py-2 white--text text-center">
         {{ new Date().getFullYear() }} — <strong>Sergio Sánchez López ©</strong>
         <v-btn v-for="icon in icons" :key="icon.name" class="mx-4" dark icon

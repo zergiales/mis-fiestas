@@ -1,8 +1,13 @@
 <template>
     <div>
+      <v-spacer></v-spacer>
       <MyHeader></MyHeader>
+      <div>
+        <!--aqui van las tarjetas-->
         <div>
           <MyEvents></MyEvents>
+        </div>
+
         </div>
         <MyFooter></MyFooter>
     </div>
