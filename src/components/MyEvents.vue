@@ -31,7 +31,7 @@
             </v-btn>
             <v-btn color="primary" large outlined class="btnC" v-bind:disabled="!proyect.link2"
             @click="abrirVentana(proyect.link2)">
-              Demo
+              Leer más
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -57,39 +57,32 @@ export default {
           name: 'Brick Game',
           descripcion: 'brick breaker sencillo  (juego arcade)',
           time: '',
-          link2: 'https://brick-game-zs.netlify.app/',
         },
         {
           img: 'capturas/ahorcadoIcon',
           name: 'Ahorcado',
 
           descripcion: 'Ahorcado que realizado con un array  que tiene palabras (POO)',
-          time: '',
-          link2: '',
+          time: 'hora',
         },
         {
           img: 'capturas/trivialIcon',
           name: 'Trivial',
           descripcion: 'Trivial que guarda las preguntas en un csv. 100% funcional.',
-          time: 'https://github.com/zergiales/trivial.git',
-          link2: '',
+          time: 'hora',
         },
         {
           img: 'capturas/calculadoraIcon',
           name: 'Calculadora',
-   
           descripcion: 'Calculadora realizada con el paradigma poo. tiene opcion cientifica. (POO)',
-          time: 'https://github.com/zergiales/calculadora.git',
-          link2: '',
+          time: '01:00 am',
 
         },
         {
           img: 'capturas/gesto',
           name: 'Gestor alumnos',
-
           descripcion: 'Gestor de base de datos de una escuela de alumnos funcional.',
-          time: 'https://github.com/zergiales/gestor-base-alumnos.git',
-          link2: '',
+          time: '22:30 pm',
         },
       ],
     };
