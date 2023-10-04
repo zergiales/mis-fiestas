@@ -1,6 +1,5 @@
 .tarjeta {
   width: 100%;
-  height: 450px
 }
 .texto {
   font-size: 14px;
@@ -15,15 +14,19 @@
 .enlace:hover {
   text-decoration: underline;
 }
+/*para que cargue se vea hacer algo*/
 .loading {
   color: greenyellow;
 }
 .fondo {
-  background-color: #e1e1e1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+
+
+
 /*TO DO: arreglar responsive de movil*/
 /*Responsive para movil*/
 @media screen and (max-width: 844px) {
